@@ -1,44 +1,130 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <title>Conversion de Masa</title>
-</head>
+﻿<?php
+/* CLASE MASA */
+class Masa { 
 
-<body> <!-- Aquí está todo el contenido de la página, sería como el contenedor principal -->
+    // ATRIBUTOS
+    // Variable privada que almacena el valor numérico ingresado
+    private $valor;
 
-<div class="main-content">
-    <div class="card">
+    // Variable pública que almacena el tipo de conversión seleccionada
+    public $tipo;
 
-        <h2 class="page-title">Conversión de Masa</h2> <!-- Este es el título que ve el usuario -->
+    /*
+    Constructor que recibe el valor y el tipo de conversión
+    Se ejecuta automáticamente al crear el objeto
+    */
+    public function __construct($valor, $tipo) {
 
-        <form method="POST" action=""> <!-- Este es el formulario donde el usuario ingresa los datos -->
+        // Validación: verifica que el valor sea numérico
+        if (!is_numeric($valor)) {
+            throw new Exception("El valor debe ser numérico.");
+        }
 
-            <div class="form-group">
+        // Asigna valores a los atributos de la clase
+        $this->valor = $valor;
+        $this->tipo = $tipo;
+    }
+
+    /*
+    Convierte libras a gramos
+    */
+    public function librasAGramos() {
+        return $this->valor * 453.592;
+    }
+
+    /*
+    Convierte kilogramos a onzas
+    */
+    public function kgAOnzas() {
+        return $this->valor * 35.274;
+    }
+
+    /*
+    Método general que decide qué conversión ejecutar
+    */
+    public function convertir() {
+
+        if ($this->tipo == "libras_gramos") {
+            return $this->librasAGramos() . " gramos";
+        } else {
+            return $this->kgAOnzas() . " onzas";
+        }
+    }
+}
+
+/*
+ MANEJO DE DATOS 
+*/
+
+// Variable para guardar resultado
+$resultado = null;
+
+// Variable para errores
+$error = "";
+
+// Verifica si el formulario fue enviado
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    try {
+        // Captura los datos del formulario
+        $valor = $_POST["valor"];
+        $tipo = $_POST["tipo"];
+
+        // Validación: número mayor que 0
+        if (!is_numeric($valor) || $valor <= 0) {
+            throw new Exception("El valor debe ser mayor que 0");
+        }
+
+        // Creación del objeto (POO)
+        $masa = new Masa($valor, $tipo);
+
+        // Uso de método para obtener resultado
+        $resultado = $masa->convertir();
+
+    } catch (Exception $e) {
+        // Guarda el mensaje de error
+        $error = $e->getMessage();
+    }
+}
+?>
+
+<!-- INTERFAZ -->
+
+<div class="main-content container mt-4">
+
+    <!-- Tarjeta principal -->
+    <div class="card p-4 shadow">
+
+        <!-- Título -->
+        <h1 class="page-title text-center mb-4">Conversión de Masa</h1>
+
+
+        <!-- Formulario -->
+        <form method="POST" action="">
+
+            <div class="form-group mb-3">
                 <!-- VALOR -->
-                <label><b>Ingrese el valor:</b></label><br> <!-- Le indicamos al usuario qué debe escribir -->
-                
+                <label class="form-label"><b>Ingrese el valor:</b></label>
+
                 <input 
                     type="number" 
                     step="any" 
                     name="valor" 
+                    class="form-control"
                     placeholder="Ej: 5.5"
                     required
                     value="<?php echo isset($_POST['valor']) ? $_POST['valor'] : ''; ?>"
                 >
-                <!-- Campo donde el usuario escribe el número que quiere convertir -->
-                
-                <br>
 
                 <!-- AVISO -->
-                <small>Solo números mayores a 0</small> 
-                <!-- Mensaje pequeño para orientar al usuario -->
+                <small class="text-muted">Solo números mayores a 0</small>
             </div>
 
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <!-- TIPO -->
-                <label><b>Tipo de conversión:</b></label><br> <!-- Se le pide elegir el tipo de conversión -->
-                
-                <select name="tipo">
+                <label class="form-label"><b>Tipo de conversión:</b></label>
+
+                <select name="tipo" class="form-select">
                     <option value="libras_gramos" <?php if(isset($_POST['tipo']) && $_POST['tipo']=="libras_gramos") echo "selected"; ?>>
                         Libras a gramos
                     </option>
@@ -46,62 +132,33 @@
                         Kilogramos a onzas
                     </option>
                 </select>
-                <!-- Lista desplegable donde el usuario escoge qué conversión quiere hacer -->
             </div>
-            <br><br>
 
             <!-- BOTONES -->
-            <button type="submit" class="btn-submit">Convertir</button>
-            <!-- Botón principal que envía los datos para hacer el cálculo -->
+            <button type="submit" class="btn-submit btn btn-primary">
+                Convertir
+            </button>
 
-            <a href="?pagina=masa" class="link-reset">Nuevo cálculo</a>
-            <!-- Este enlace sirve para limpiar y empezar de nuevo -->
+            <button type="button" class="btn-clear btn"
+                onclick="window.location.href='?pagina=masa'">
+                Limpiar
+            </button>
 
         </form>
 
-        <?php
-            // Clase donde se hacen las conversiones
-            class Masa {
-                public function librasAGramos($libras) {
-                    return $libras * 453.592; // Convierte libras a gramos
-                }
-                public function kgAOnzas($kg) {
-                    return $kg * 35.274; // Convierte kilogramos a onzas
-                }
-            }
+        <!-- Mensaje de error -->
+        <?php if ($error): ?>
+            <div class="error-msg alert alert-danger">
+                <?= $error ?>
+            </div>
+        <?php endif; ?>
 
-            // Verificamos si el usuario envió el formulario
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                try {
-                    $valor = $_POST["valor"]; // Guardamos el valor ingresado
-                    $tipo = $_POST["tipo"]; // Guardamos el tipo de conversión elegido
+        <!-- Resultado -->
+        <?php if ($resultado): ?>
+            <div class="resultado alert alert-success mt-3">
+                <strong>Resultado:</strong> <?= $resultado ?>
+            </div>
+        <?php endif; ?>
 
-                    // Validamos que el valor sea número y mayor que 0
-                    if (!is_numeric($valor) || $valor <= 0) {
-                        throw new Exception("El valor debe ser mayor que 0");
-                    }
-
-                    $masa = new Masa(); // Creamos el objeto para usar las conversiones
-
-                    // Dependiendo de lo que el usuario eligió, hacemos la conversión
-                    if ($tipo == "libras_gramos") {
-                        $resultado = $masa->librasAGramos($valor);
-                        echo "<div class='resultado'><b>Resultado:</b> $resultado gramos</div>";
-                        // Mostramos el resultado en pantalla
-                    } else {
-                        $resultado = $masa->kgAOnzas($valor);
-                        echo "<div class='resultado'><b>Resultado:</b> $resultado onzas</div>";
-                        // Mostramos el resultado en pantalla
-                    }
-
-                } catch (Exception $e) {
-                    // Si hay error (por ejemplo número inválido), lo mostramos aquí
-                    echo "<div class='error-msg'><b>Error:</b> " . $e->getMessage() . "</div>";
-                }
-            }
-        ?>
-        </div>
     </div>
-
-</body>
-</html>
+</div>
