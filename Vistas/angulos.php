@@ -6,17 +6,19 @@ class Angulo {
     // Variable privada para almacenar el ángulo en grados
     private $grados;
 
-    /* Constructor que recibe el valor del ángulo y valida que sea numero*/
+/* Constructor que recibe el valor del ángulo y valida que sea numero*/
     public function __construct($grados) {
 
-        // Validación: si no es número, lanza excepción
-        if (!is_numeric($grados)) {
-            throw new Exception("El valor del ángulo debe ser numérico.");
-        }
+    // Quita el símbolo de grados si existe
+    $grados = str_replace('°', '', $grados);
 
-        // Asigna el valor a la variable
-        $this->grados = $grados;
+// Validación: si no es número, lanza excepción
+    if (!is_numeric($grados)) {
+        throw new Exception("El valor del ángulo debe ser numérico.");
     }
+     // Asigna el valor a la variable
+    $this->grados = $grados;
+}
 
     // Convierte grados a radianes
     public function getRadianes() {
@@ -121,10 +123,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="form-group">
                 <label>Ingrese el ángulo en grados</label>
-                <input type="text" name="angulo" required>
+                <input type="text" name="angulo" required placeholder="Ejemplo 5 o 5°" pattern="^[0-9]+(\.[0-9]+)?°?$" title="Solo números y simbolo °"oninput="this.value = this.value.replace(/[^0-9.°]/g, '')">
             </div>
 
             <button type="submit" class="btn-submit">Calcular</button>
+            <button type="button" class="btn-clear" 
+            onclick="window.location.href='index.php?pagina=angulos'"> Limpiar </button>
 
         </form>
 
