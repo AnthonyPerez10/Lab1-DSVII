@@ -89,7 +89,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!-- INTERFAZ -->
-
 <div class="main-content container mt-4">
 
     <!-- Tarjeta principal -->
@@ -98,54 +97,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <!-- Título -->
         <h1 class="page-title text-center mb-4">Conversión de Masa</h1>
 
-
         <!-- Formulario -->
-        <form method="POST" action="">
+        <?php include ("./html/masa_form.html"); ?>
 
-            <div class="form-group mb-3">
-                <!-- VALOR -->
-                <label class="form-label"><b>Ingrese el valor:</b></label>
 
-                <input 
-                    type="number" 
-                    step="any" 
-                    name="valor" 
-                    class="form-control"
-                    placeholder="Ej: 5.5"
-                    required
-                    value="<?php echo isset($_POST['valor']) ? $_POST['valor'] : ''; ?>"
-                >
-
-                <!-- AVISO -->
-                <small class="text-muted">Solo números mayores a 0</small>
-            </div>
-
-            <div class="form-group mb-3">
-                <!-- TIPO -->
-                <label class="form-label"><b>Tipo de conversión:</b></label>
-
-                <select name="tipo" class="form-select">
-                    <option value="libras_gramos" <?php if(isset($_POST['tipo']) && $_POST['tipo']=="libras_gramos") echo "selected"; ?>>
-                        Libras a gramos
-                    </option>
-                    <option value="kg_onzas" <?php if(isset($_POST['tipo']) && $_POST['tipo']=="kg_onzas") echo "selected"; ?>>
-                        Kilogramos a onzas
-                    </option>
-                </select>
-            </div>
-
-            <!-- BOTONES -->
-            <button type="submit" class="btn-submit btn btn-primary">
-                Convertir
-            </button>
-
-            <button type="button" class="btn-clear btn"
-                onclick="window.location.href='?pagina=masa'">
-                Limpiar
-            </button>
-
-        </form>
-
+        <!-- Mensajes de Resultados de los calculos -->
         <!-- Mensaje de error -->
         <?php if ($error): ?>
             <div class="error-msg alert alert-danger">
@@ -159,6 +115,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <strong>Resultado:</strong> <?= $resultado ?>
             </div>
         <?php endif; ?>
-
     </div>
 </div>
