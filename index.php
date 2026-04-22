@@ -81,7 +81,7 @@
 
     <footer class="footer">
         <p>Grupo 3 - L1P3 Matemáticas</p>
-        <p>Integrantes:</p>
+        <p>Integrantes: Anthony Perez, Brandon Arcia, Luis Vasquez, Alexandra de Gracia</p>
     </footer>
 
 </body>
