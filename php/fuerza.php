@@ -57,7 +57,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $angulo = $_POST['angulo'] ?? '';
 
     //Validacion de ambos valores debesn ser de tipo numerico
-    if (is_numeric($magnitud) && is_numeric($angulo)) {
+    if (
+        filter_var($magnitud, FILTER_VALIDATE_FLOAT) !== false &&
+        filter_var($angulo, FILTER_VALIDATE_FLOAT) !== false
+    ) {
 
         try {
             $fuerza = new Fuerza((float)$magnitud, (float)$angulo);
@@ -67,12 +70,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $rad = round($fuerza->getRadianes(), 4);
             // Se prepara el resultado para mostrarlo en pantalla
             $resultado = "
-                        F (Magnitud): {$magnitud} N <br>
-                        Ángulo en grados: {$angulo}° <br>
-                        Ángulo en radianes: {$rad} rad <br>
-                        Componente X (Fx = F·cosθ): {$fx} N <br>
-                        Componente Y (Fy = F·senθ): {$fy} N
-                        ";
+                    <strong>F (Magnitud):</strong> {$magnitud} N <br>
+                    <strong>Ángulo en grados:</strong> {$angulo}° <br>
+                    <strong>Ángulo en radianes:</strong> {$rad} rad <br>
+                    <strong>Componente X (Fx = F·cosθ):</strong> {$fx} N <br>
+                    <strong>Componente Y (Fy = F·senθ):</strong> {$fy} N
+                ";
         } catch (Exception $e) {
             $error = $e->getMessage();
         }
@@ -83,34 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 ?>
 
-<!--Parte visual del formulario-->
-
-<!--Titulo del formulario-->
-<h1 class="page-title">Calculadora de Fuerzas</h1>
-
-<!--Formulario en HTML-->
-<form method="POST">
-
-    <div class="form-group">
-        <label>Magnitud (N):</label>
-        <input type="number" step="any" name="magnitud" required
-            placeholder="Ingrese datos tipo numerico. ejm: 10 (Newton)."
-            value="<?php echo htmlspecialchars($_POST['magnitud'] ?? ''); ?>">
-    </div>
-
-    <div class="form-group">
-        <label>Ángulo (grados):</label>
-        <input type="number" step="any" name="angulo" required
-            placeholder="Ingrese de datos de tipo numerico. ejm: 30 (Grados)."
-            value="<?php echo htmlspecialchars($_POST['angulo'] ?? ''); ?>">
-    </div>
-
-    <button type="submit" class="btn-submit">Calcular</button>
-
-    <button type="button" class="btn-clear" 
-            onclick="window.location.href='index.php?pagina=angulos'"> Limpiar </button>
-
-</form>
+<?php include("html/fuerza_form.html"); ?> <!--Se incluye el formulario de Fuerzas --->
 
 <!--Mostrar los resultado si existe-->
 <?php if ($resultado): ?>

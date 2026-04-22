@@ -1,0 +1,27 @@
+<div class="navbar-brand">Módulo Matemáticas</div>
+
+<ul class="nav-menu">
+  <li class="nav-item">
+    <a
+      class="nav-link <?php echo (($_GET['pagina'] ?? '') == 'angulos') ? 'active' : ''; ?>"
+      href="index.php?pagina=angulos"
+      >Ángulos</a
+    >
+  </li>
+
+  <li class="nav-item">
+    <a
+      class="nav-link <?php echo (($_GET['pagina'] ?? '') == 'fuerza') ? 'active' : ''; ?>"
+      href="index.php?pagina=fuerza"
+      >Fuerzas</a
+    >
+  </li>
+
+  <li class="nav-item">
+    <a
+      class="nav-link <?php echo (($_GET['pagina'] ?? '') == 'masa') ? 'active' : ''; ?>"
+      href="index.php?pagina=masa"
+      >Masa</a
+    >
+  </li>
+</ul>

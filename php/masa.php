@@ -1,6 +1,7 @@
 ﻿<?php
-/* CLASE MASA */
-class Masa { 
+/* Incio para la clase de logica CLASE MASA */
+class Masa
+{
 
     // ATRIBUTOS
     // Variable privada que almacena el valor numérico ingresado
@@ -13,7 +14,8 @@ class Masa {
     Constructor que recibe el valor y el tipo de conversión
     Se ejecuta automáticamente al crear el objeto
     */
-    public function __construct($valor, $tipo) {
+    public function __construct($valor, $tipo)
+    {
 
         // Validación: verifica que el valor sea numérico
         if (!is_numeric($valor)) {
@@ -28,21 +30,24 @@ class Masa {
     /*
     Convierte libras a gramos
     */
-    public function librasAGramos() {
+    public function librasAGramos()
+    {
         return $this->valor * 453.592;
     }
 
     /*
     Convierte kilogramos a onzas
     */
-    public function kgAOnzas() {
+    public function kgAOnzas()
+    {
         return $this->valor * 35.274;
     }
 
     /*
     Método general que decide qué conversión ejecutar
     */
-    public function convertir() {
+    public function convertir()
+    {
 
         if ($this->tipo == "libras_gramos") {
             return $this->librasAGramos() . " gramos";
@@ -80,7 +85,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Uso de método para obtener resultado
         $resultado = $masa->convertir();
-
     } catch (Exception $e) {
         // Guarda el mensaje de error
         $error = $e->getMessage();
@@ -98,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h1 class="page-title text-center mb-4">Conversión de Masa</h1>
 
         <!-- Formulario -->
-        <?php include ("./html/masa_form.html"); ?>
+        <?php include("./html/masa_form.html"); ?>
 
 
         <!-- Mensajes de Resultados de los calculos -->
