@@ -184,11 +184,7 @@ select:focus {
 }
 
 
-/* Form centrado */
-form {
-    margin-top: 10px;
-=======
-/*============ BTN Limpiar =================*/
+/*============Boton Limpiar pag Fuerzas ==========*/
 .btn-clear {
     width: 100%;
     padding: 12px;
