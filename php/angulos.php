@@ -104,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Ángulos</title>
 
     <!-- Enlace a CSS -->
-    <link rel="stylesheet" href=..Styles/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
@@ -118,39 +118,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <!-- Titulo -->
         <h2 class="page-title">Cálculo de Ángulos</h2>
 
-        <!-- Formulario -->
-        <form method="POST">
+        <!-- Inicia formulario -->
+        <?php include("./html/formulario.html");?>
+        <!-- Termina formulario -->
 
-            <div class="form-group">
-                <label>Ingrese el ángulo en grados</label>
-                <input type="text" name="angulo" required placeholder="Ejemplo 5 o 5°" pattern="^[0-9]+(\.[0-9]+)?°?$" title="Solo números y simbolo °"oninput="this.value = this.value.replace(/[^0-9.°]/g, '')">
-            </div>
-
-            <button type="submit" class="btn-submit">Calcular</button>
-            <button type="button" class="btn-clear" 
-            onclick="window.location.href='index.php?pagina=angulos'"> Limpiar </button>
-
-        </form>
-
-        <!-- Mensaje de error-->
-        <?php if ($error): ?>
-            <div class="error-msg">
-                <?= $error ?>
-            </div>
+        <!-- Mensaje de error -->
+        <?php if (!empty($error)): ?>
+        <div class="error-msg">
+        <?= htmlspecialchars($error) ?>
+        </div>
         <?php endif; ?>
 
-        <!-- Resultados-->
+        <!-- Resultados -->
         <?php if ($resultado): ?>
-            <div class="resultado">
-                <p><strong>Grados:</strong> <?= $resultado["grados"] ?></p>
-                <p><strong>Radianes:</strong> <?= round($resultado["radianes"], 4) ?></p>
-                <p><strong>Sen:</strong> <?= round($resultado["seno"], 4) ?></p>
-                <p><strong>Cos:</strong> <?= round($resultado["coseno"], 4) ?></p>
-                <p><strong>Tan:</strong> <?= round($resultado["tangente"], 4) ?></p>
-                <p><strong>Cuadrante:</strong> <?= $resultado["cuadrante"] ?></p>
-            </div>
-        <?php endif; ?>
-
+    <div class="resultado">
+        <p><strong>Grados:</strong>    <?= htmlspecialchars($resultado["grados"]) ?></p>
+        <p><strong>Radianes:</strong>  <?= round($resultado["radianes"], 4) ?></p>
+        <p><strong>Sen:</strong>       <?= round($resultado["seno"],     4) ?></p>
+        <p><strong>Cos:</strong>       <?= round($resultado["coseno"],   4) ?></p>
+        <p><strong>Tan:</strong>       <?= round($resultado["tangente"], 4) ?></p>
+        <p><strong>Cuadrante:</strong> <?= htmlspecialchars($resultado["cuadrante"]) ?></p>
+    </div>
+<?php endif; ?>
     </div>
 </div>
 

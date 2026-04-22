@@ -107,9 +107,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <button type="submit" class="btn-submit">Calcular</button>
 
-    <button type="submit" name="limpiar" class="btn-clear">
-        Limpiar
-    </button>
+    <button type="button" class="btn-clear" 
+            onclick="window.location.href='index.php?pagina=angulos'"> Limpiar </button>
 
 </form>
 

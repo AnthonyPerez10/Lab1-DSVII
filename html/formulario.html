@@ -1,0 +1,18 @@
+<!-- Formulario -->
+<form method="POST">
+    <div class="form-group">
+        <label>Ingrese el ángulo en grados</label>
+        <input 
+            type="text" 
+            name="angulo" 
+            required 
+            placeholder="Ejemplo 5 o 5°" 
+            pattern="^[0-9]+(\.[0-9]+)?°?$" 
+            title="Solo números y símbolo °"
+            oninput="this.value = this.value.replace(/[^0-9.°]/g, '')">
+    </div>
+
+    <button type="submit" class="btn-submit">Calcular</button>
+    <button type="button" class="btn-clear" 
+        onclick="window.location.href='index.php?pagina=angulos'">Limpiar</button>
+</form>

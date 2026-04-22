@@ -46,8 +46,9 @@
             switch ($pagina) {
 
                 case 'angulos':
+                    case 'angulos':
                     if (file_exists(__DIR__ . '/php/angulos.php')) {
-                        include __DIR__ . '/php/angulos.php';
+                    include __DIR__ . '/php/angulos.php';
                     } else {
                         echo "<h1 class='page-title'>Ángulos</h1><p>Módulo en construcción.</p>";
                     }
@@ -55,7 +56,7 @@
 
                 case 'fuerza':
                     if (file_exists(__DIR__ . '/php/fuerza.php')) {
-                        include __DIR__ . '/php/fuerza.php';
+                    include __DIR__ . '/php/fuerza.php';
                     } else {
                         echo "<h1 class='page-title'>Fuerzas</h1><p>Módulo en construcción.</p>";
                     }
@@ -63,7 +64,7 @@
 
                 case 'masa':
                     if (file_exists(__DIR__ . '/php/masa.php')) {
-                        include __DIR__ . '/php/masa.php';
+                    include __DIR__ . '/php/masa.php';
                     } else {
                         echo "<h1 class='page-title'>Masa</h1><p>Módulo en construcción.</p>";
                     }
@@ -79,10 +80,7 @@
         </div>
     </div>
 
-    <footer class="footer">
-        <p>Grupo 3 - L1P3 Matemáticas</p>
-        <p>Integrantes: Anthony Perez, Brandon Arcia, Luis Vasquez, Alexandra de Gracia</p>
-    </footer>
+    <?php include("html/footer.html");?>
 
 </body>
 
