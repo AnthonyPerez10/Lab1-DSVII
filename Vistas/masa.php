@@ -54,7 +54,7 @@
             <button type="submit" class="btn-submit">Convertir</button>
             <!-- Botón principal que envía los datos para hacer el cálculo -->
 
-            <a href="masa.php" class="link-reset">Nuevo cálculo</a>
+            <a href="?pagina=masa" class="link-reset">Nuevo cálculo</a>
             <!-- Este enlace sirve para limpiar y empezar de nuevo -->
 
         </form>
