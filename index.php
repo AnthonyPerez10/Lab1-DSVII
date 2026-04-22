@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Módulo Matemáticas</title>
-    <link rel="stylesheet" href="Styles/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -46,24 +46,24 @@
             switch ($pagina) {
 
                 case 'angulos':
-                    if (file_exists(__DIR__ . '/Vistas/angulos.php')) {
-                        include __DIR__ . '/Vistas/angulos.php';
+                    if (file_exists(__DIR__ . '/php/angulos.php')) {
+                        include __DIR__ . '/php/angulos.php';
                     } else {
                         echo "<h1 class='page-title'>Ángulos</h1><p>Módulo en construcción.</p>";
                     }
                     break;
 
                 case 'fuerza':
-                    if (file_exists(__DIR__ . '/Vistas/fuerza.php')) {
-                        include __DIR__ . '/Vistas/fuerza.php';
+                    if (file_exists(__DIR__ . '/php/fuerza.php')) {
+                        include __DIR__ . '/php/fuerza.php';
                     } else {
                         echo "<h1 class='page-title'>Fuerzas</h1><p>Módulo en construcción.</p>";
                     }
                     break;
 
                 case 'masa':
-                    if (file_exists(__DIR__ . '/Vistas/masa.php')) {
-                        include __DIR__ . '/Vistas/masa.php';
+                    if (file_exists(__DIR__ . '/php/masa.php')) {
+                        include __DIR__ . '/php/masa.php';
                     } else {
                         echo "<h1 class='page-title'>Masa</h1><p>Módulo en construcción.</p>";
                     }
