@@ -52,7 +52,7 @@ class Angulo
     {
 
         // Ajusta el ángulo dentro de 0-360
-        $angulo = $this->grados % 360;
+        $angulo = fmod($this->grados, 360);
 
         if ($angulo == 0 || $angulo == 90 || $angulo == 180 || $angulo == 270) {
             return "Eje";
