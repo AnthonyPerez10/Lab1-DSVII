@@ -1,0 +1,40 @@
+<form method="POST">
+
+    <div class="mb-3">
+        <label class="form-label">Magnitud (N):</label>
+        <input
+            type="number"
+            step="any"
+            class="form-control"
+            name="magnitud"
+            required
+            placeholder="Ingrese datos tipo numerico. ejm: 10 (Newton)."
+            value="<?php echo htmlspecialchars($_POST['magnitud'] ?? ''); ?>"
+        />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Ángulo (grados):</label>
+        <input
+            type="number"
+            step="any"
+            class="form-control"
+            name="angulo"
+            required
+            placeholder="Ingrese datos tipo numerico. ejm: 30 (Grados)."
+            value="<?php echo htmlspecialchars($_POST['angulo'] ?? ''); ?>"
+        />
+    </div>
+
+    <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary">Calcular</button>
+        <button
+            type="button"
+            class="btn btn-outline-secondary"
+            onclick="window.location.href='L1_P3.php?pagina=fuerza'"
+        >
+            Limpiar
+        </button>
+    </div>
+
+</form>

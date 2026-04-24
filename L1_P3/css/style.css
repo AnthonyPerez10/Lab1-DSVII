@@ -1,0 +1,211 @@
+
+/* Estilo generales */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: #0f172a;
+    color: #e5e7eb;
+    min-height: 100vh;
+}
+
+/* Para el nav global */
+.navbar-custom {
+    display: flex;
+    align-items: center;
+    padding: 18px 32px;
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.navbar-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f8fafc;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-links a {
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #cbd5e1;
+    font-weight: 500;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.navbar-links a:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+}
+
+.navbar-links a.active {
+    background: #2563eb;
+    color: #fff;
+}
+
+/* SubMenu */
+.submenu-interno {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 0;
+    background-color: #0d0d1f;
+    border-bottom: 2px solid #1e1e3a;
+}
+
+.submenu-link {
+    color: #cbd5e1;
+    text-decoration: none;
+    padding: 7px 22px;
+    border-radius: 6px;
+    background-color: #1e1e3a;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+}
+
+.submenu-link:hover {
+    background-color: #2563eb;
+    color: #fff;
+}
+
+.submenu-link.active {
+    background-color: #2563eb;
+    color: #fff;
+    font-weight: 700;
+}
+
+/* Para el contenido */
+.main-content {
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 0 16px;
+}
+
+.card {
+    padding: 32px;
+    border-radius: 12px;
+    background: #111827;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Titulo */
+.page-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #f3f4f6;
+}
+
+/* Formularios */
+
+.form-label {
+    color: #cbd5e1;
+    font-weight: 500;
+}
+
+.form-control,
+.form-select {
+    background-color: #0b1220;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: #0b1220;
+    color: #fff;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
+}
+
+.form-control::placeholder {
+    color: #64748b;
+}
+
+.text-muted {
+    color: #64748b !important;
+}
+
+/* Opciones del select en tema oscuro */
+.form-select option {
+    background-color: #0b1220;
+    color: #fff;
+}
+
+/* Botonoes */
+
+.btn-primary {
+    background-color: #2563eb;
+    border-color: #2563eb;
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+    border-color: #1d4ed8;
+}
+
+.btn-outline-secondary {
+    color: #cbd5e1;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.btn-outline-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Resultados */
+
+.alert-success {
+    background: rgba(34, 197, 94, 0.08) !important;
+    border-left: 4px solid #22c55e !important;
+    border-top: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+    border-radius: 8px !important;
+}
+
+.alert-success,
+.alert-success p,
+.alert-success strong,
+.alert-success * {
+    color: #fff !important;
+}
+
+.alert-danger {
+    background: rgba(239, 68, 68, 0.08) !important;
+    border-left: 4px solid #ef4444 !important;
+    border-top: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+    border-radius: 8px !important;
+}
+
+.alert-danger,
+.alert-danger p,
+.alert-danger strong,
+.alert-danger * {
+    color: #fca5a5 !important;
+}
+
+/* Footer*/
+.footer {
+    margin-top: 40px;
+    padding: 18px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.03);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
